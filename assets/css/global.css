@@ -20,6 +20,9 @@
     border: 1px solid red;
 }
 
+.vanish {
+    display:none;
+}
 .center{
     margin: 0 auto;
 }

@@ -44,7 +44,7 @@ $( document ).ready(function() {
         player.DamageNumberRoll = 1;
         player.DamageBonus = 6;
 
-        printPlayerStats();
+        startGame();
         
     });
 
@@ -72,7 +72,7 @@ $( document ).ready(function() {
         monstersList[0] = goblin;
 
         //Randomly picks a monster from the array and sets global variables
-        var key= Math.floor(Math.random()*monsters.length);
+        var key= Math.floor(Math.random()*monstersList.length);
         monster.Name = monstersList[key].name;
         monster.MaxHealth = monstersList[key].maxHealth;
         monster.CurrentHealth = monstersList[key].currentHealth;
@@ -82,7 +82,22 @@ $( document ).ready(function() {
         monster.DamageNumberRoll = monstersList[key].diceRolls;
         monster.DamageBonus = monstersList[key].damageBonus;
 
-    }
+        console.log(monster);
+    };
+
+    function startGame(){
+        printPlayerStats();
+        toggleCharacterSelect();
+        monsterSelector();
+    };
+    //hides the character select interface - only after hero selected
+    function toggleCharacterSelect(){
+        $('.character-select').toggleClass("vanish");
+    };
+
+    //shows the adventure interface - called after characterSelect vanishes
+
+
     //Function for debugging. prints all player stats to the console.
     function printPlayerStats(){
         console.log("Character Chosen: "+player.CharacterName);
@@ -94,6 +109,6 @@ $( document ).ready(function() {
         console.log("Damage Dice Sides: "+player.DamageDiceSide);
         console.log("Damage Roll Number: "+player.DamageNumberRoll);
         console.log("Damage Bonus: "+player.DamageBonus);
-    }
+    };
 
 });
