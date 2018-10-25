@@ -85,6 +85,7 @@ $( document ).ready(function() {
         console.log(monster);
     };
 
+    //run at the begninning of a game to toggle html interface items, get a monster to fight.
     function startGame(){
         printPlayerStats();
         toggleCharacterSelect();
