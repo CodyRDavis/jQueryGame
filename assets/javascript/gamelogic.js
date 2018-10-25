@@ -1,26 +1,29 @@
 //Declairing Variables##########################################################################
 //Declairing player's stats
-var playerCharacterName = "";
-var playerMaxHealth = 0;
-var playerCurrentHealth = 0;
-var playerDefense = 0;
-var playerNumberAttacks = 0;
-var playerAttackBonus = 0;
-var playerDamageDiceSide = 0;
-var playerDamageNumberRoll = 0;
-var playerDamageBonus = 0;
+var player = {
+    CharacterName: "",
+    playerMaxHealth: 0,
+    playerCurrentHealth: 0,
+    playerDefense: 0,
+    playerNumberAttacks: 0,
+    playerAttackBonus: 0,
+    playerDamageDiceSide: 0,
+    playerDamageNumberRoll: 0,
+    playerDamageBonus: 0,
+}
 //Monster's Stats
-var monsterName = "";
-var monsterMaxHealth = 0;
-var monsterCurrentHealth = 0;
-var monsterDefense = 0;
-var monsterAttackBonus = 0;
-var monsterDamageDiceSide = 0;
-var monsterDamageNumberRoll = 0;
-var monsterDamageBonus = 0;
+var monster = {
+    Name: "",
+    monsterMaxHealth: 0,
+    monsterCurrentHealth: 0,
+    monsterDefense: 0,
+    monsterAttackBonus: 0,
+    monsterDamageDiceSide: 0,
+    monsterDamageNumberRoll: 0,
+    monsterDamageBonus: 0,
+};
 //gamecounters and tracking
 var numberMonsterDefeated = 0;
-
 
 //waits for webpage to full load
 $( document ).ready(function() {
@@ -31,17 +34,18 @@ $( document ).ready(function() {
     $( "#dwarfHero" ).click(function() { //Dwarf Hero
         console.log("Selected Hero: Dwarf");
         //setting global stats to that of the dwarf
-        playerCharacterName = "Fredrick"
-        playerMaxHealth = 128;
-        playerCurrentHealth = 128;
-        playerDefense = 20;
-        playerAttackBonus = 8;
-        playerNumberAttacks = 2;
-        playerDamageDiceSide = 12;
-        playerDamageNumberRoll = 1;
-        playerDamageBonus = 6;
+        player.CharacterName = "Fredrick"
+        player.MaxHealth = 128;
+        player.CurrentHealth = 128;
+        player.Defense = 20;
+        player.AttackBonus = 8;
+        player.NumberAttacks = 2;
+        player.DamageDiceSide = 12;
+        player.DamageNumberRoll = 1;
+        player.DamageBonus = 6;
 
         printPlayerStats();
+        
     });
 
     $( "#rangerHero" ).click(function() { //Ranger Hero
@@ -56,17 +60,40 @@ $( document ).ready(function() {
         console.log("Selected Hero: Monk");
     });
 
+    //randomly selects monster and populates the global variables for monster
+    //currently only spits out dumb monster
+    function monsterSelector() {
+
+        //blueprint of all monsters in game
+        var goblin = {name:"test", maxHealth:500, currentHealth:500, defense: 35, attackBonus: 6, diceSides: 6, diceRolls: 3, damageBonus: 6};
+
+        //creating a list of monsters so one can be selected randomly.
+        var monstersList = [];
+        monstersList[0] = goblin;
+
+        //Randomly picks a monster from the array and sets global variables
+        var key= Math.floor(Math.random()*monsters.length);
+        monster.Name = monstersList[key].name;
+        monster.MaxHealth = monstersList[key].maxHealth;
+        monster.CurrentHealth = monstersList[key].currentHealth;
+        monster.Defense = monstersList[key].defense;
+        monster.AttackBonus = monstersList[key].attackBonus;
+        monster.DamageDiceSide = monstersList[key].diceSides;
+        monster.DamageNumberRoll = monstersList[key].diceRolls;
+        monster.DamageBonus = monstersList[key].damageBonus;
+
+    }
     //Function for debugging. prints all player stats to the console.
     function printPlayerStats(){
-        console.log("Character Chosen: "+playerCharacterName);
-        console.log("Max Health: "+playerMaxHealth);
-        console.log("Current Health: "+playerCurrentHealth);
-        console.log("Defense: "+playerDefense);
-        console.log("to hit Bonus: "+playerAttackBonus);
-        console.log("Number of Attacks: "+ playerNumberAttacks);
-        console.log("Damage Dice Sides: "+playerDamageDiceSide);
-        console.log("Damage Roll Number: "+playerDamageNumberRoll);
-        console.log("Damage Bonus: "+playerDamageBonus);
+        console.log("Character Chosen: "+player.CharacterName);
+        console.log("Max Health: "+player.MaxHealth);
+        console.log("Current Health: "+player.CurrentHealth);
+        console.log("Defense: "+player.Defense);
+        console.log("to hit Bonus: "+player.AttackBonus);
+        console.log("Number of Attacks: "+ player.NumberAttacks);
+        console.log("Damage Dice Sides: "+player.DamageDiceSide);
+        console.log("Damage Roll Number: "+player.DamageNumberRoll);
+        console.log("Damage Bonus: "+player.DamageBonus);
     }
 
 });
