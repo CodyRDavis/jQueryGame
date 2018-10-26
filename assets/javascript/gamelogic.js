@@ -1,7 +1,7 @@
 //Declairing Variables##########################################################################
 //Declairing player's stats
 var player = {
-    characterName: "",
+    characterName: "not set",
     maxHealth: 0,
     currentHealth: 0,
     defense: 0,
@@ -9,7 +9,7 @@ var player = {
     attackBonus: 0,
     damageDiceSide: 0,
     damageNumberRoll: 0,
-    damageBonus: 0,
+    damageBonus: 0
 };
 //Monster's Stats
 var monster = {
@@ -21,13 +21,28 @@ var monster = {
     attackBonus: 0,
     damageDiceSide: 0,
     damageNumberRoll: 0,
-    damageBonus: 0,
+    damageBonus: 0
 };
-//gamecounters and tracking
+    //gamecounters and tracking
 var numberMonsterDefeated = 0;
 
 //waits for webpage to full load
 $( document ).ready(function() {
+
+    //###################################################################
+    //listening for keypresses for keyboard enabled gameplay
+    $(document).keypress(function(e) {
+
+        //if user presses enter....
+        console.log(e.which);
+        if(e.which == 13) {
+            console.log("character name: " + player.characterName);
+            if (player.characterName != "not set"){
+                console.log("enter Pressed...another round of combat.");
+                combat();
+            }
+        }
+    });
 
     //###################################################################
     //Checking to see which hero player picks
@@ -150,8 +165,6 @@ $( document ).ready(function() {
             console.log("The monster missed you.");
         }
         console.log("end of combat");
-
-
 
     };
 
