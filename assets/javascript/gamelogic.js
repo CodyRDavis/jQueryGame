@@ -159,7 +159,7 @@ $( document ).ready(function() {
         console.log("Character Chosen: "+player.characterName);
         console.log("Max Health: "+player.maxHealth);
         console.log("Current Health: "+player.currentHealth);
-        console.log("Defense: "+player.Defense);
+        console.log("Defense: "+player.defense);
         console.log("to hit Bonus: "+player.attackBonus);
         console.log("Number of Attacks: "+ player.numberAttacks);
         console.log("Damage Dice Sides: "+player.damageDiceSide);
