@@ -1,4 +1,6 @@
 .character-bio img {
   height: 250px;
   width: 250px;
+  overflow: hidden;
+  object-fit: cover;
 }
