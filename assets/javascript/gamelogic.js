@@ -38,7 +38,7 @@ $( document ).ready(function() {
         if(e.which == 13) {
             console.log("character name: " + player.characterName);
             if (player.characterName != "not set"){
-                console.log("enter Pressed...another round of combat.");
+                console.log("Top of Combat Round");
                 combat();
             }
         }
@@ -143,6 +143,7 @@ $( document ).ready(function() {
             console.log("you missed the monster!");
         }
         
+        checkCombatEndConditions(); // checking to see if monster died before monster would get a turn
 
         //checking to see if the monsters attacks are hitting.
         if (monsterAttackRoll > player.defense) {
@@ -164,6 +165,9 @@ $( document ).ready(function() {
 
             console.log("The monster missed you.");
         }
+
+        checkCombatEndConditions(); // checking to see if player died after monster attacked.
+
         console.log("end of combat");
 
     };
@@ -186,12 +190,15 @@ $( document ).ready(function() {
     
         if(monster.currentHealth<=0) {
             console.log("Monster Defeated!!!! *final fantasy victory music");
-            monsterSelector();
+            numberMonsterDefeated++; //incriminting counter of total monsters killed this run.
+            monsterSelector(); //get a new monster
         }
-        else if (player.currentHealth) {
+        else if (player.currentHealth <= 0) {
             console.log("You Died...");
+            console.log("You killed "+numberMonsterDefeated+" before falling to the darkness.")
             //toggle dungeon interface...
-            toggleCharacterSelect();
+            resetPlayer();
+            toggleCharacterSelect(); //bring back the character select screen, allows users to get new hero.
         }
 
     };
@@ -203,7 +210,18 @@ $( document ).ready(function() {
 
     //shows the adventure interface - called after characterSelect vanishes
 
-    //TODO!!!!
+    function resetPlayer(){
+        player.characterName ="not set";
+        player.maxHealth = 0;
+        player.currentHealth = 0;
+        player.defense = 0;
+        player.numberAttacks = 0;
+        player.attackBonus = 0;
+        player.damageDiceSide = 0;
+        player.damageNumberRoll = 0;
+        player.damageBonus = 0;
+        numberMonsterDefeated = 0;
+    }
 
     //Function for debugging. prints all player stats to the console.
     function printPlayerStats(){

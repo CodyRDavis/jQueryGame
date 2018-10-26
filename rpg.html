@@ -18,39 +18,63 @@
 
     </head>
 <body>
-    <div class="character-select">
-        <div class="select-title row"></div><!--Ends Row-->
-        <div class="character-info row">
-            <div class="col-3">
-                <div id="dwarfHero" class="character-bio center text-center">
-                    <img class="avatars" src="assets/images/avatar-dwarf.jpg" alt="Photo of Dwarven Hero">
-                    <h2>Fredrick Stormhammer</h2>  
+    <div class="wrapper center clearfix">
+        <div class="character-select">
+            <div class="select-title row center text-center">
+                <h1 id="gameTopTip" class="gameResults">Error: not initilized and set properly</h1>
+            </div><!--Ends Row-->
+            <div class="character-info row">
+                <div class="col-3">
+                    <div id="dwarfHero" class="character-bio center text-center">
+                        <img class="avatars" src="assets/images/avatar-dwarf.jpg" alt="Photo of Dwarven Hero">
+                        <h2 class="hero-name">Fredrick Stormhammer</h2>  
+                    </div>
+                </div>
+                <!-- Col -->
+                <div class="col-3 character-bio">
+                    <div id="monkHero" class="character-bio center text-center">
+                        <img class="avatars" src="assets/images/avatar-monk.jpg" alt="Photo of Monk Hero">
+                        <h2 class="hero-name">Queng Ban</h2>
+                    </div>
+                </div>
+                <!-- Col -->
+                <div class="col-3 character-bio">
+                    <div id="rangerHero" class="character-bio center text-center">
+                        <img class="avatars" src="assets/images/avatar-ranger.jpg" alt="Photo of Ranger Hero">
+                        <h2 class="hero-name">Tholan Dillmis</h2>
+                    </div>
+                </div>
+                <!-- Col -->
+                <div class="col-3 character-bio">
+                    <div id="paladinHero" class="character-bio center text-center">
+                        <img class="avatars" src="assets/images/avatar-paladin.jpg" alt="Photo of Paladin Hero">
+                        <h2 class="hero-name">Ternef Strongeyes</h2>
+                    </div>
+                </div>
+            </div><!--Ends Row-->
+        </div>
+        <div class="adventureScreen">
+            <div class="row">
+                <div class="col-12">Name Enters the dungeon...</div>
+            </div>
+            <div class="row">
+                <div class="col-3">image of chosen hero</div>
+                <div class="col-9">image of monster that appears!</div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p class="combatLog">Error: Never Initilized</p>
                 </div>
             </div>
-            <!-- Col -->
-            <div class="col-3 character-bio">
-                <div id="monkHero" class="character-bio center text-center">
-                    <img class="avatars" src="assets/images/avatar-monk.jpg" alt="Photo of Monk Hero">
-                    <h2>Queng Ban</h2>
+            <div class="row">
+                <div class="col-12 center text-center">
+                    <span class="button-attack">
+                        Attack!
+                    </span>
                 </div>
             </div>
-            <!-- Col -->
-            <div class="col-3 character-bio">
-                <div id="rangerHero" class="character-bio center text-center">
-                    <img class="avatars" src="assets/images/avatar-ranger.jpg" alt="Photo of Ranger Hero">
-                    <h2>Tholan Dillmis</h2>
-                </div>
-            </div>
-            <!-- Col -->
-            <div class="col-3 character-bio">
-                <div id="paladinHero" class="character-bio center text-center">
-                    <img class="avatars" src="assets/images/avatar-paladin.jpg" alt="Photo of Paladin Hero">
-                    <h2>Ternef Strongeyes</h2>
-                </div>
-            </div>
-        </div><!--Ends Row-->
+        </div>
     </div>
-    <div class="gameLog"></div>
     
 </body>
 </html>

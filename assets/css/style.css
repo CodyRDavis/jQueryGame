@@ -1,6 +1,47 @@
+body{
+  background-image: url(../images/bg-wood.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  color: #eee;
+}
+
+.wrapper {
+  background-color: #333333ee;
+  max-width: 900px;
+  min-width: 700px;
+  height: 100%;
+}
 .character-bio img {
-  height: 250px;
-  width: 250px;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   object-fit: cover;
+}
+
+.gameResults{
+  font-size: 3rem;
+  color: red;
+}
+
+.hero-name{
+  font-size: 1.5rem;
+}
+
+.combatLog{
+  overflow: hidden;
+
+}
+
+.button-attack{
+  color: white;
+  background-color: #a3a3a3;
+  border: 1px solid #a3a3a3;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 1.5rem;
+}
+.button-attack:hover{
+  color:#333333;
 }
