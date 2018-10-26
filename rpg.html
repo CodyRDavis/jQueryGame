@@ -19,9 +19,10 @@
     </head>
 <body>
     <div class="wrapper center clearfix">
+
         <div class="character-select">
             <div class="select-title row center text-center">
-                <h1 id="gameTopTip" class="gameResults">Error: not initilized and set properly</h1>
+                <h1 id="gameTopTip" class="top-tip">Top Tip</h1>
             </div><!--Ends Row-->
             <div class="character-info row">
                 <div class="col-3">
@@ -52,25 +53,39 @@
                     </div>
                 </div>
             </div><!--Ends Row-->
-        </div>
-        <div class="adventureScreen">
             <div class="row">
-                <div class="col-12">Name Enters the dungeon...</div>
+                <div class="col-12">
+                    <div id="lastGameReport">Error: last game report</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="adventureScreen vanish">
+            <div class="row">
+                <div class="col-12"><h1 id="gameBoardTitle">Name Enters the dungeon...</h1></div>
             </div>
             <div class="row">
-                <div class="col-3">image of chosen hero</div>
-                <div class="col-9">image of monster that appears!</div>
+                <div class="col-3">
+                    <div id="hero">
+                        <img id="heroImg" class="img-hero">
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div id="enemy">
+                        <img id="monsterImg">
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p class="combatLog">Error: Never Initilized</p>
+                    <p id="combatLog" class="combat-log">Error: Never Initilized</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 center text-center">
-                    <span class="button-attack">
+                    <div id = "attackButton" class="button-attack">
                         Attack!
-                    </span>
+                    </div>
                 </div>
             </div>
         </div>

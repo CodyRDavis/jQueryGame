@@ -6,6 +6,11 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}

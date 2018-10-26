@@ -20,9 +20,8 @@ body{
   object-fit: cover;
 }
 
-.gameResults{
+.top-tip{
   font-size: 3rem;
-  color: red;
 }
 
 .hero-name{
@@ -44,4 +43,22 @@ body{
 }
 .button-attack:hover{
   color:#333333;
+}
+
+.img-hero {
+  width:100%;
+  height: auto;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.image-monster{
+  width: 100%;
+  height: auto;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.combat-log{
+  height: 200px;
 }

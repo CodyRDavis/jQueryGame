@@ -30,19 +30,10 @@ var numberMonsterDefeated = 0;
 $( document ).ready(function() {
 
     //###################################################################
-    //listening for keypresses for keyboard enabled gameplay
-    $(document).keypress(function(e) {
+    //runs on load to set up the default texts on Character Select and Adventure Board
 
-        //if user presses enter....
-        console.log(e.which);
-        if(e.which == 13) {
-            console.log("character name: " + player.characterName);
-            if (player.characterName != "not set"){
-                console.log("Top of Combat Round");
-                combat();
-            }
-        }
-    });
+    characterSelectDefaulter();
+    $( "#lastGameReport" ).text("");
 
     //###################################################################
     //Checking to see which hero player picks
@@ -60,25 +51,41 @@ $( document ).ready(function() {
         player.damageNumberRoll = 1;
         player.damageBonus = 6;
 
-        startGame();
-        
+        //sets gameboard piece
+        $('#heroImg').attr("src", "assets/images/avatar-dwarf.jpg")
 
-        //###########################################################################
-        //please remove below. its only here for testing purposes.
-        combat();
+        startGame();
         
     });
 
     $( "#rangerHero" ).click(function() { //Ranger Hero
         console.log("Selected Hero: Ranger");
+
+        //sets gameboard piece
+        $('#heroImg').attr("src", "assets/images/avatar-ranger.jpg")
     });
 
     $( "#paladinHero" ).click(function() { //Paladin Hero
         console.log("Selected Hero: Paladin");
+
+        //sets gameboard piece
+        $('#heroImg').attr("src", "assets/images/avatar-paladin.jpg")
     });
 
     $( "#monkHero" ).click(function() { //Monk Hero
         console.log("Selected Hero: Monk");
+
+        //sets gameboard piece
+        $('#heroImg').attr("src", "assets/images/avatar-monk.jpg")
+    });
+
+
+    //####################################################################
+    //Controls for inside the Dungeon
+
+    $( "#attackButton").click(function() {
+        console.log("attackbutton hit...")
+        canCombat();
     });
 
     //randomly selects monster and populates the global variables for monster
@@ -87,11 +94,9 @@ $( document ).ready(function() {
 
         //blueprint of all monsters in game
         var monstersList = [
-            {name:"Goblin", maxHealth:76, currentHealth:76, defense: 15, numberAttacks: 1, attackBonus: 4, diceSides: 6, diceRolls: 1, damageBonus: 2},
-            {name:"Orc", maxHealth: 134, currentHealth: 134, defense: 24, numberAttacks: 1, attackBonus: 6, diceSides: 6, diceRolls: 1, damageBonus: 5}
+            {name:"Goblin", maxHealth:76, currentHealth:76, defense: 15, numberAttacks: 1, attackBonus: 4, diceSides: 6, diceRolls: 1, damageBonus: 2, source: "assets/images/monster-goblin.jpg"},
+            {name:"Orc", maxHealth: 134, currentHealth: 134, defense: 24, numberAttacks: 1, attackBonus: 6, diceSides: 6, diceRolls: 1, damageBonus: 5, source:" assets/images/monster-orc.jpg"}
         ];
-
-        //creating a list of monsters so one can be selected randomly.
 
         //Randomly picks a monster from the array and sets global variables for current monster
         var key= Math.floor(Math.random()*monstersList.length);
@@ -106,15 +111,28 @@ $( document ).ready(function() {
         monster.damageBonus = monstersList[key].damageBonus;
 
         console.log(monster);
+
+        $('#combatLog').append("<p>"+player.characterName + "encounters an enemy " + monster.name + " in the dungeron! </p>");
+        $('#monsterImg').attr("src", monstersList[key].source);
+        $('#monsterImg').addClass("image-monster");
+
     };
 
     //run at the begninning of a game to toggle html interface items, get a monster to fight.
     function startGame(){
         printPlayerStats();
+        gameBoardDefaulter();
         toggleCharacterSelect();
+        toggleAdventureScreen();
         monsterSelector();
     };
 
+    //checks to see if the game instance is ready for combat
+    function canCombat(){
+        if( player.characterName != "not set" && monster.name != "") {
+            combat();
+        }
+    }
     //handles a round of combat.
     function combat() {
         //determines which attacks hit
@@ -135,12 +153,19 @@ $( document ).ready(function() {
                 currentAttack = rollDice(player.damageNumberRoll, player.damageDiceSide, player.damageBonus);
                 damageDealt += currentAttack;
             }
-            console.log("Monster HP was: "+monster.currentHealth);
             monster.currentHealth -= damageDealt; //Monsters health looses total ammount of damage as players dealth from all attacks.
             console.log("Monster Hp after attack is: "+monster.currentHealth);
+
+            //printing out player's damage to the combat log
+            $('#combatLog').append("<p>"+player.characterName + " hits " + monster.name + " for a total of  " + damageDealt+" damage.  </p>");
+            $('#combatLog').append("<p>" + monster.name +": "+monster.currentHealth+"hp/"+monster.maxHealth+"hp</p>");
         }
         else {
+
+            //printing out player's miss to the combat log.
             console.log("you missed the monster!");
+            $('#combatLog').append("<p>"+player.characterName + " misses the " + monster.name + ".  </p>");
+            $('#combatLog').append("<p>" + monster.name +": "+monster.currentHealth+"hp/"+monster.maxHealth+"hp</p>");
         }
         
         checkCombatEndConditions(); // checking to see if monster died before monster would get a turn
@@ -158,12 +183,20 @@ $( document ).ready(function() {
                 damageDealt += currentAttack;
             }
 
-            console.log(player.characterName+"'s HP was: "+player.currentHealth);
             player.currentHealth -= damageDealt; //Monsters health looses total ammount of damage as players dealth from all attacks.
             console.log(player.characterName+"'s HP is: "+player.currentHealth);
+
+
+            //Printing out damage player takes to combat log.
+            $('#combatLog').append("<p>"+monster.name + " hits " + player.characterName + " for a total of  " + damageDealt+" damage.  </p>");
+            $('#combatLog').append("<p>" + player.characterName +": "+player.currentHealth+"hp/"+player.maxHealth+"hp</p>");
+            
         } else {
 
+            //printing out the monster missing the player to combat log
             console.log("The monster missed you.");
+            $('#combatLog').append("<p>"+monster.name + " misses " + player.characterName + ".  </p>");
+            $('#combatLog').append("<p>" + player.characterName +": "+player.currentHealth+"hp/"+player.maxHealth+"hp</p>");
         }
 
         checkCombatEndConditions(); // checking to see if player died after monster attacked.
@@ -199,6 +232,7 @@ $( document ).ready(function() {
             //toggle dungeon interface...
             resetPlayer();
             toggleCharacterSelect(); //bring back the character select screen, allows users to get new hero.
+            toggleAdventureScreen(); // hides the previous adventure.
         }
 
     };
@@ -209,6 +243,9 @@ $( document ).ready(function() {
     };
 
     //shows the adventure interface - called after characterSelect vanishes
+    function toggleAdventureScreen(){
+        $('.adventureScreen').toggleClass("vanish");
+    }
 
     function resetPlayer(){
         player.characterName ="not set";
@@ -221,6 +258,18 @@ $( document ).ready(function() {
         player.damageNumberRoll = 0;
         player.damageBonus = 0;
         numberMonsterDefeated = 0;
+    }
+
+    //sets the initial values of the character select screen so that player see's intended text
+    function characterSelectDefaulter(){
+        $( "#gameTopTip" ).text("Select a Hero to brave the dungeon.");
+
+    }
+
+    //sets the initial values of the game board so that player see's intended text
+    function gameBoardDefaulter() {
+        $( "#gameBoardTitle" ).text( player.characterName + " enters the dungeon...");
+        $( "#combatLog").text ("");
     }
 
     //Function for debugging. prints all player stats to the console.
