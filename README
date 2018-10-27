@@ -1,0 +1,20 @@
+I used HTML, CSS, Javascript, and JQuery for the following assignment.
+
+I focused on listening for clicks from the user and going into a simplified D20 (table top roll 20 sided dice) rules for the combat mechanics.
+This includes the following:
+  Roll to see if you hit the enemy (beat its armor class)
+    if you confirm hit, roll damage
+  update monsters hp, and check for a win condition.
+  roll to see if monster hits player
+    if confirm hi, roll damange
+   update player hp and check for a lose condition.
+   
+monsters will continue to swarm the player untill they eventually die, the test here is to see how far your hero can make it into the dungeon.
+   there are no winners here, only those who slay more beasts and bring glory to their family.
+   
+users can select one of 4 heroes for this adventure. some being better than others and more ready to take on the challenge.
+   
+Reflecting back on my project there are many things I would like to do differently if given the chance
+-take out the HP updates from combat log and move them to under the portraits.
+-populate and create the heros from pure js, this would allow more heros to be added dynamically down the road.
+-change the way monsters are summoned to allow party dynamics and users to select whom to attack.
