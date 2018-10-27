@@ -112,7 +112,7 @@ $( document ).ready(function() {
 
         console.log(monster);
 
-        $('#combatLog').append("<p>"+player.characterName + "encounters an enemy " + monster.name + " in the dungeron! </p>");
+        $('#combatLog').prepend("<p>"+player.characterName + "encounters an enemy " + monster.name + " in the dungeron! </p>");
         $('#monsterImg').attr("src", monstersList[key].source);
         $('#monsterImg').addClass("image-monster");
 
@@ -157,15 +157,15 @@ $( document ).ready(function() {
             console.log("Monster Hp after attack is: "+monster.currentHealth);
 
             //printing out player's damage to the combat log
-            $('#combatLog').append("<p>"+player.characterName + " hits " + monster.name + " for a total of  " + damageDealt+" damage.  </p>");
-            $('#combatLog').append("<p>" + monster.name +": "+monster.currentHealth+"hp/"+monster.maxHealth+"hp</p>");
+            $('#combatLog').prepend("<p>"+player.characterName + " hits " + monster.name + " for a total of  " + damageDealt+" damage.  </p>");
+            $('#combatLog').prepend("<p>" + monster.name +": "+monster.currentHealth+"hp/"+monster.maxHealth+"hp</p>");
         }
         else {
 
             //printing out player's miss to the combat log.
             console.log("you missed the monster!");
-            $('#combatLog').append("<p>"+player.characterName + " misses the " + monster.name + ".  </p>");
-            $('#combatLog').append("<p>" + monster.name +": "+monster.currentHealth+"hp/"+monster.maxHealth+"hp</p>");
+            $('#combatLog').prepend("<p>"+player.characterName + " misses the " + monster.name + ".  </p>");
+            $('#combatLog').prepend("<p>" + monster.name +": "+monster.currentHealth+"hp/"+monster.maxHealth+"hp</p>");
         }
         
         checkCombatEndConditions(); // checking to see if monster died before monster would get a turn
@@ -188,15 +188,15 @@ $( document ).ready(function() {
 
 
             //Printing out damage player takes to combat log.
-            $('#combatLog').append("<p>"+monster.name + " hits " + player.characterName + " for a total of  " + damageDealt+" damage.  </p>");
-            $('#combatLog').append("<p>" + player.characterName +": "+player.currentHealth+"hp/"+player.maxHealth+"hp</p>");
+            $('#combatLog').prepend("<p>"+monster.name + " hits " + player.characterName + " for a total of  " + damageDealt+" damage.  </p>");
+            $('#combatLog').prepend("<p>" + player.characterName +": "+player.currentHealth+"hp/"+player.maxHealth+"hp</p>");
             
         } else {
 
             //printing out the monster missing the player to combat log
             console.log("The monster missed you.");
-            $('#combatLog').append("<p>"+monster.name + " misses " + player.characterName + ".  </p>");
-            $('#combatLog').append("<p>" + player.characterName +": "+player.currentHealth+"hp/"+player.maxHealth+"hp</p>");
+            $('#combatLog').prepend("<p>"+monster.name + " misses " + player.characterName + ".  </p>");
+            $('#combatLog').prepend("<p>" + player.characterName +": "+player.currentHealth+"hp/"+player.maxHealth+"hp</p>");
         }
 
         checkCombatEndConditions(); // checking to see if player died after monster attacked.

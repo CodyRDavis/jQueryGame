@@ -20,6 +20,10 @@ body{
   object-fit: cover;
 }
 
+.log-container{
+  overflow-y:scroll;
+}
+
 .top-tip{
   font-size: 3rem;
 }
