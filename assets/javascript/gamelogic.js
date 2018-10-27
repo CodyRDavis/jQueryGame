@@ -228,7 +228,9 @@ $( document ).ready(function() {
         }
         else if (player.currentHealth <= 0) {
             console.log("You Died...");
-            console.log("You killed "+numberMonsterDefeated+" before falling to the darkness.")
+            console.log("You killed "+numberMonsterDefeated+" before falling to the darkness.");
+            $('#textDeath').text( "You have Died." );
+            $('#textNumberSlain').text( player.characterName + " killed " +numberMonsterDefeated + " monsters before falling to the darkness..." );
             //toggle dungeon interface...
             resetPlayer();
             toggleCharacterSelect(); //bring back the character select screen, allows users to get new hero.
@@ -247,6 +249,8 @@ $( document ).ready(function() {
         $('.adventureScreen').toggleClass("vanish");
     }
 
+
+    //Zeros out player's stats so that no left over data gives weird results for consecutive games.
     function resetPlayer(){
         player.characterName ="not set";
         player.maxHealth = 0;
