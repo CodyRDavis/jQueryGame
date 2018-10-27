@@ -41,7 +41,7 @@ $( document ).ready(function() {
     $( "#dwarfHero" ).click(function() { //Dwarf Hero
         console.log("Selected Hero: Dwarf");
         //setting global stats to that of the dwarf
-        player.characterName = "Fredrick"
+        player.characterName = "Fredrick Stormhammer"
         player.maxHealth = 128;
         player.currentHealth = 128;
         player.defense = 20;
@@ -61,22 +61,63 @@ $( document ).ready(function() {
     $( "#rangerHero" ).click(function() { //Ranger Hero
         console.log("Selected Hero: Ranger");
 
+        //setting global stats to that of the Ranger
+        player.characterName = "Tholan Dillmis"
+        player.maxHealth = 80;
+        player.currentHealth = 80;
+        player.defense = 16;
+        player.attackBonus = 10;
+        player.numberAttacks = 2;
+        player.damageDiceSide = 10;
+        player.damageNumberRoll = 2;
+        player.damageBonus = 6;
+
+        
+
         //sets gameboard piece
         $('#heroImg').attr("src", "assets/images/avatar-ranger.jpg")
+        
+        startGame();
     });
 
     $( "#paladinHero" ).click(function() { //Paladin Hero
         console.log("Selected Hero: Paladin");
 
+        //setting global stats to that of the Paladin
+        player.characterName = "Ternef Strongeyes"
+        player.maxHealth = 150;
+        player.currentHealth = 150;
+        player.defense = 24;
+        player.attackBonus = 6;
+        player.numberAttacks = 2;
+        player.damageDiceSide = 6;
+        player.damageNumberRoll = 2;
+        player.damageBonus = 6;
+
         //sets gameboard piece
         $('#heroImg').attr("src", "assets/images/avatar-paladin.jpg")
+
+        startGame();
     });
 
     $( "#monkHero" ).click(function() { //Monk Hero
         console.log("Selected Hero: Monk");
 
+        //setting global stats to that of the monk
+        player.characterName = "Queng Ban"
+        player.maxHealth = 128;
+        player.currentHealth = 128;
+        player.defense = 16;
+        player.attackBonus = 10;
+        player.numberAttacks = 4;
+        player.damageDiceSide = 6;
+        player.damageNumberRoll = 1;
+        player.damageBonus = 8;
+
         //sets gameboard piece
         $('#heroImg').attr("src", "assets/images/avatar-monk.jpg")
+
+        startGame();
     });
 
 
@@ -140,6 +181,8 @@ $( document ).ready(function() {
         var monsterAttackRoll = rollDice(1,20,monster.attackBonus);
         var damageDealt = 0;
 
+        //sending visual que to combat log for user readability
+        $('#combatLog').prepend("New Round-----------------------------------------------------");
         console.log("starting to see who got hit....");
         //checking to see if player hits monster or misses
         if (playerAttackRoll > monster.defense) {
